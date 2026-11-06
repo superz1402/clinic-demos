@@ -1,35 +1,14 @@
-name: Publish demos to GitHub Pages
+name: Pages (branch-based — no build needed)
+
+# GitHub Pages for this repo is served directly from the main branch
+# (legacy build type, enabled via API on 2026-11-06). This workflow is a
+# manual placeholder only; it intentionally does not deploy anything.
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
-  deploy:
+  noop:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages (create site if needed)
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - run: echo "Pages is served from the main branch — nothing to build."
